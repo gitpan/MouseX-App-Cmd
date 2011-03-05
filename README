@@ -1,0 +1,82 @@
+NAME
+    MouseX::App::Cmd - Mashes up MouseX::Getopt and App::Cmd.
+
+VERSION
+    version 0.07
+
+SYNOPSIS
+        package YourApp::Cmd;
+            use Mouse;
+
+        extends qw(MouseX::App::Cmd);
+
+
+        package YourApp::Cmd::Command::blort;
+        use Mouse;
+
+        extends qw(MouseX::App::Cmd::Command);
+
+        has blortex => (
+            traits => [qw(Getopt)],
+            isa => "Bool",
+            is  => "rw",
+            cmd_aliases   => "X",
+            documentation => "use the blortext algorithm",
+        );
+
+        has recheck => (
+            traits => [qw(Getopt)],
+            isa => "Bool",
+            is  => "rw",
+            cmd_aliases => "r",
+            documentation => "recheck all results",
+        );
+
+        sub execute {
+            my ( $self, $opt, $args ) = @_;
+
+            # you may ignore $opt, it's in the attributes anyway
+
+            my $result = $self->blortex ? blortex() : blort();
+
+            recheck($result) if $self->recheck;
+
+            print $result;
+        }
+
+DESCRIPTION
+    This module marries App::Cmd with MouseX::Getopt. It is a direct port of
+    MooseX::App::Cmd to Mouse.
+
+    Use it like App::Cmd advises (especially see App::Cmd::Tutorial),
+    swapping App::Cmd::Command for MouseX::App::Cmd::Command.
+
+    Then you can write your Mouse commands as Mouse classes, with
+    MouseX::Getopt defining the options for you instead of "opt_spec"
+    returning a Getopt::Long::Descriptive spec.
+
+SEE ALSO
+    App::Cmd
+    MouseX::Getopt
+    MooseX::App::Cmd
+
+BUGS
+    Please report any bugs or feature requests on the bugtracker website
+    http://github.com/mjg/MouseX-App-Cmd/issues
+
+    When submitting a bug or request, please include a test-file or a patch
+    to an existing test-file that illustrates the bug or desired feature.
+
+AUTHORS
+    *   Yuval Kogman <nothingmuch@woobling.org>
+
+    *   Guillermo Roditi <groditi@cpan.org>
+
+    *   Mark Gardner <mjgardner@cpan.org>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2011 by Infinity Interactive.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
