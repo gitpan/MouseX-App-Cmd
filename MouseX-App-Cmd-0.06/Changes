@@ -1,0 +1,20 @@
+0.06
+    - various fixes for upstream version of App::Cmd (vovkasm & brunov)
+
+0.05
+    - Various minor fixes due to upstream module changes
+
+0.04
+    - Fix failing test when no Test::Output is available.
+      No code change (lestrrat)
+
+0.03
+    - EMulate App::Cmd's new + tests (groditi)
+    - Fix for newest MX::Getopt (dann)
+    - Add the ability to handle --configfile when used with MX::ConfigFromFile (lestrrat)
+
+0.02
+    - Use MooseX::Getopt 0.09's Getopt::Long::Descriptive features
+
+0.01
+    - Initial version
