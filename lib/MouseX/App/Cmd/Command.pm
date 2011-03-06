@@ -6,21 +6,21 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use utf8;
+use 5.006;
 use strict;
-use Modern::Perl;    ## no critic (UselessNoCritic,RequireExplicitPackage)
+use warnings;
 
 package MouseX::App::Cmd::Command;
 
 BEGIN {
-    $MouseX::App::Cmd::Command::VERSION = '0.07';
+    $MouseX::App::Cmd::Command::VERSION = '0.08';
 }
 
 # ABSTRACT: Base class for commands.
 
+use Mouse;
 use English '-no_match_vars';
 use Getopt::Long::Descriptive ();
-use Mouse;
 with 'MouseX::Getopt';
 extends qw(Mouse::Object App::Cmd::Command);
 
@@ -47,12 +47,12 @@ sub _process_args {    ## no critic (ProhibitUnusedPrivateSubroutines)
         local @ARGV = @ARGV;
 
         my $configfile;
-        my $opt_parser = Getopt::Long::Parser->new(
-            config => [
-                qw( pass_through
-                    )
-            ]
-        );
+        my $opt_parser;
+        {
+            ## no critic (Modules::RequireExplicitInclusion)
+            $opt_parser
+                = Getopt::Long::Parser->new( config => [qw( pass_through)] );
+        }
         $opt_parser->getoptions( 'configfile=s' => \$configfile );
         if ( !defined $configfile ) {
             my $cfmeta = $class->meta->find_attribute_by_name('configfile');
@@ -91,15 +91,13 @@ __END__
 
 =for :stopwords Yuval Kogman Guillermo Roditi Mark Gardner Infinity Interactive
 
-=encoding utf8
-
 =head1 NAME
 
 MouseX::App::Cmd::Command - Base class for commands.
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -134,8 +132,6 @@ L<MouseX::Getopt|MouseX::Getopt> and the glue to combine the two.
 Replaces L<App::Cmd::Command|App::Cmd::Command>'s argument processing in in
 favor of
 L<MouseX::Getopt|MouseX::Getopt> based processing.
-
-=encoding utf8
 
 =head1 SEE ALSO
 

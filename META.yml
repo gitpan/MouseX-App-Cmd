@@ -14,7 +14,6 @@ build_requires:
   Test::More: 0.94
   Test::Output: 0
   YAML: 0
-  perl: 5.004
 configure_requires:
   ExtUtils::MakeMaker: 6.31
 dynamic_config: 0
@@ -30,14 +29,12 @@ requires:
   English: 0
   File::Basename: 0
   Getopt::Long::Descriptive: 0
-  Modern::Perl: 0
   Mouse: 0.86
   Mouse::Object: 0
   MouseX::Getopt: 0.18
   Test::use::ok: 0
-  perl: 5.010
-  utf8: 0
+  perl: 5.006
 resources:
   bugtracker: http://github.com/mjg/MouseX-App-Cmd/issues
   repository: git://github.com/mjg/mousex-app-cmd.git
-version: 0.07
+version: 0.08

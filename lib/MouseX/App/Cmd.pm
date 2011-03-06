@@ -6,21 +6,21 @@
 # This is free software; you can redistribute it and/or modify it under
 # the same terms as the Perl 5 programming language system itself.
 #
-use utf8;
+use 5.006;
 use strict;
-use Modern::Perl;    ## no critic (UselessNoCritic,RequireExplicitPackage)
+use warnings;
 
 package MouseX::App::Cmd;
 
 BEGIN {
-    $MouseX::App::Cmd::VERSION = '0.07';
+    $MouseX::App::Cmd::VERSION = '0.08';
 }
 
 # ABSTRACT: Mashes up L<MouseX::Getopt|MouseX::Getopt> and L<App::Cmd|App::Cmd>.
 
+use Mouse;
 use English '-no_match_vars';
 use File::Basename ();
-use Mouse;
 extends qw(Mouse::Object App::Cmd);
 
 sub BUILDARGS {
@@ -49,15 +49,13 @@ __END__
 
 =for :stopwords Yuval Kogman Guillermo Roditi Mark Gardner Infinity Interactive
 
-=encoding utf8
-
 =head1 NAME
 
 MouseX::App::Cmd - Mashes up L<MouseX::Getopt|MouseX::Getopt> and L<App::Cmd|App::Cmd>.
 
 =head1 VERSION
 
-version 0.07
+version 0.08
 
 =head1 SYNOPSIS
 
@@ -115,8 +113,6 @@ Then you can write your Mouse commands as Mouse classes, with
 L<MouseX::Getopt|MouseX::Getopt>
 defining the options for you instead of C<opt_spec> returning a
 L<Getopt::Long::Descriptive|Getopt::Long::Descriptive> spec.
-
-=encoding utf8
 
 =head1 SEE ALSO
 
