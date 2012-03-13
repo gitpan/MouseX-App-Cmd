@@ -1,4 +1,4 @@
-#!perl
+#!/usr/bin/perl
 
 BEGIN {
     unless ( $ENV{RELEASE_TESTING} ) {
@@ -8,9 +8,12 @@ BEGIN {
     }
 }
 
+use 5.006;
+use strict;
+use warnings;
 use Test::More;
 
-eval "use Test::Vars";
-plan skip_all => "Test::Vars required for testing unused vars"
-    if $@;
-all_vars_ok();
+use Test::Requires { 'Test::Version' => 0.04, };
+
+version_all_ok;
+done_testing;

@@ -1,3 +1,4 @@
+#!perl
 
 BEGIN {
     unless ( $ENV{RELEASE_TESTING} ) {
@@ -7,13 +8,8 @@ BEGIN {
     }
 }
 
-use strict;
-use warnings;
-
 use Test::More;
-
-eval "use Test::ConsistentVersion";
-plan skip_all => "Test::ConsistentVersion required for this test"
-    if $@;
-
-Test::ConsistentVersion::check_consistent_versions();
+eval 'use Test::CPAN::Changes';
+plan skip_all => 'Test::CPAN::Changes required for this test' if $@;
+changes_ok();
+done_testing();

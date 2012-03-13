@@ -10,7 +10,8 @@ BEGIN {
 
 use Test::More;
 
-eval "use Test::Vars";
-plan skip_all => "Test::Vars required for testing unused vars"
+eval 'use Test::Mojibake';
+plan skip_all => 'Test::Mojibake required for source encoding testing'
     if $@;
-all_vars_ok();
+
+all_files_encoding_ok();
