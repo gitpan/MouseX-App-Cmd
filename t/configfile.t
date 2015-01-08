@@ -3,18 +3,16 @@
 use strict;
 use warnings;
 use Test::More;
+use Mouse;
 
 BEGIN {
-    eval {
-        require MouseX::ConfigFromFile;
-        require YAML;
-    };
+    eval 'require MouseX::ConfigFromFile; require YAML;';
     if ($@) {
-        plan( skip_all =>
-                'These tests require MouseX::ConfigFromFile and YAML' );
+        plan skip_all =>
+            'These tests require MouseX::ConfigFromFile and YAML';
     }
     else {
-        plan( tests => 2 );
+        plan tests => 3;
     }
 }
 
@@ -29,7 +27,7 @@ my $cmd = Test::ConfigFromFile->new;
 
     like(
         $@,
-        qr/Mandatory parameter 'moo' missing/,
+        qr/Mandatory parameter 'moo' missing in call to ["(]eval[)"]/,
         'command died with the correct string',
     );
 }
@@ -43,4 +41,11 @@ my $cmd = Test::ConfigFromFile->new;
         qr/cows go moo1 moo2 moo3/,
         'command died with the correct string',
     );
+}
+
+{
+    local @ARGV = qw(boo);
+    eval { $cmd->run };
+
+    like( $@, qr/ghosts go moo1 moo2 moo3/, 'default configfile read', );
 }

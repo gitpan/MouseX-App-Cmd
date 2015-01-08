@@ -16,7 +16,7 @@ isa_ok( $cmd, 'Test::MyCmd' );
 is_deeply(
     [ sort $cmd->command_names ],
     [   sort
-            qw(help --help -h -? commands frob frobulate justusage stock bark)
+            qw(help --help -h --version -? commands frob frobulate justusage stock bark version)
     ],
     'got correct list of registered command names',
 );
@@ -28,6 +28,7 @@ is_deeply(
     [   qw(
             App::Cmd::Command::commands
             App::Cmd::Command::help
+            App::Cmd::Command::version
             Test::MyCmd::Command::bark
             Test::MyCmd::Command::frobulate
             Test::MyCmd::Command::justusage
@@ -53,7 +54,7 @@ is_deeply(
 
     my $error = $@;
 
-    like( $error, qr/^basic.t justusage/, 'default usage_desc is okay', );
+    like( $error, qr/^basic.t justusage/, 'default usage_desc is okay' );
 }
 
 {
@@ -69,7 +70,7 @@ is_deeply(
 
     like(
         $@,
-        qr/Mandatory parameter 'wow' missing/,
+        qr/Mandatory parameter 'wow' missing in call to ["(]eval[)"]/,
         'required option field is missing',
     );
 }

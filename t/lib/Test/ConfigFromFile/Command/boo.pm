@@ -1,4 +1,4 @@
-package Test::ConfigFromFile::Command::moo;
+package Test::ConfigFromFile::Command::boo;
 use Mouse;
 use YAML();
 
@@ -7,7 +7,7 @@ with 'MouseX::ConfigFromFile';
 
 =head1 NAME
 
-Test::MyCmd::Command::moo - reads from config file
+Test::MyCmd::Command::boo - reads from config file
 
 =cut
 
@@ -19,10 +19,12 @@ has 'moo' => (
     documentation => "required option field",
 );
 
+sub _get_default_configfile {'t/lib/Test/ConfigFromFile/config.yaml'}
+
 sub execute {
     my ( $self, $opt, $arg ) = @_;
 
-    die( "cows go " . join( ' ', $self->moo ) );
+    die( "ghosts go " . join( ' ', $self->moo ) );
 }
 
 sub get_config_from_file {

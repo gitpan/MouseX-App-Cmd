@@ -1,7 +1,7 @@
 package Test::MyCmd::Command::bark;
 use Mouse;
 
-extends qw(MouseX::App::Cmd::Command);
+extends 'MouseX::App::Cmd::Command';
 
 =head1 NAME
 

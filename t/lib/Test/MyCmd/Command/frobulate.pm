@@ -1,7 +1,7 @@
 package Test::MyCmd::Command::frobulate;
 use Mouse;
 
-extends qw(MouseX::App::Cmd::Command);
+extends 'MouseX::App::Cmd::Command';
 
 sub command_names {
     return qw(frobulate frob);
